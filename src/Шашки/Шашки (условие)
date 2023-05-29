@@ -1,0 +1,329 @@
+Шашки
+Разработчики любят проводить свободное время за настольными играми. Иногда это шахматы, иногда — UNO,
+ а иногда — шашки. Однако, когда неопытные игроки садятся за шашки, они периодически допускают ошибки
+ (прямо как в программировании!) и не рубят шашку соперника, когда такая возможность есть.
+
+Чтобы избежать ошибок, разработчики решили написать программу, которая будет по текущей позиции
+определять, можно ли сходить так, чтобы срубить шашку противника. Но прямо сейчас у них много других
+важных проектов, поэтому запрограммировать анализатор позиции попросили вас.
+
+Для тех, кто давненько не брал в руки шашек, напомним правила:
+
+все шашки стоят на полях одного цвета;
+одна шашка может срубить другую, если та стоит на соседней клетке по диагонали и при этом
+в следующей диагональной клетке в направлении соперника нет никакой другой шашки.
+Формат ввода
+В первой строке даны числа NN и MM (1 \le N, M \le 10^31≤N,M≤10
+3
+ ) — размеры доски, на которой разработчики играют в шашки. Каждое поле имеет свой цвет:
+ черный или белый. При этом гарантируется, что поле с координатами (1; 1)(1;1) имеет черный цвет.
+ Гарантируется также, что поле, имеющее общую границу с черным полем, будет иметь белый цвет,
+ а поле, имеющее общую границу с белым полем, — черный цвет.
+
+В следующей строке дано число ww — количество белых шашек на поле. В следующих ww строках
+задаются два целых числа ii и jj (1 \le i \le N, 1 \le j \le M1≤i≤N,1≤j≤M) — поля, на которых
+стоят белые шашки. В следующей строке дано число bb — количество черных шашек на поле.
+В следующих bb строках задаются поля с черными шашками, точно так же, как и с белыми.
+Гарантируется, что количество шашек каждого цвета — целое положительное число,
+и что 2 \le w + b \le (NM + 1) / 22≤w+b≤(NM+1)/2. Гарантируется, что все шашки стоят на черных полях.
+
+В заключительной строке ввода указано, чей ход: white, если белых, и black — если черных.
+
+Формат вывода
+В единственной строке выведите Yes, если автор хода может срубить шашку соперника,
+и No в противоположном случае.
+
+Пример 1
+Ввод
+8 8
+3
+1 1
+2 6
+6 6
+3
+2 2
+7 7
+8 8
+white
+Вывод
+Yes
+Пример 2
+Ввод
+8 8
+2
+2 2
+3 3
+2
+7 7
+8 8
+black
+Вывод
+No
+----------------------------------------------------------------------------------------
+Tests
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Ввод
+8 8
+1
+1 1
+1
+2 2
+black
+Вывод
+No
+
+Ввод
+8 8
+1
+5 1
+1
+6 2
+black
+Вывод
+No
+
+Ввод
+8 8
+1
+8 1
+1
+7 2
+black
+Вывод
+No
+
+Ввод
+8 8
+1
+8 8
+1
+7 7
+black
+Вывод
+No
+
+Ввод
+8 8
+1
+7 7
+1
+6 6
+black
+Вывод
+No
+
+Ввод
+8 8
+1
+2 2
+1
+3 3
+black
+Вывод
+No
+
+----------------------------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+public class Main {
+
+    /*
+	Для чтения входных данных необходимо получить их
+	из стандартного потока ввода (System.in).
+	Данные во входном потоке соответствуют описанному
+	в условии формату. Обычно входные данные состоят
+	из нескольких строк. Можно использовать более производительные
+	и удобные классы BufferedReader, BufferedWriter, Scanner, PrintWriter.
+
+	С помощью BufferedReader можно прочитать из стандартного потока:
+	* строку -- reader.readLine()
+	* число -- int n = Integer.parseInt(reader.readLine());
+	* массив чисел известной длины (во входном потоке каждое число на новой строке) --
+	int[] nums = new int[len];
+    for (int i = 0; i < len; i++) {
+        nums[i] = Integer.parseInt(reader.readLine());
+    }
+	* последовательность слов в строке --
+	String[] parts = reader.readLine().split(" ");
+
+	Чтобы вывести результат в стандартный поток вывода (System.out),
+	Через BufferedWriter можно использовать методы
+	writer.write("Строка"), writer.write('A') и writer.newLine().
+
+	Возможное решение задачи "Вычислите сумму чисел в строке":
+	int sum = 0;
+    String[] parts = reader.readLine().split(" ");
+    for (int i = 0; i < parts.length; i++) {
+        int num = Integer.parseInt(parts[i]);
+        sum += num;
+    }
+    writer.write(String.valueOf(sum));
+	*/
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        reader.close();
+        writer.close();
+    }
+
+}
+
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+
+// Шашки
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        boolean takeIsPossible = false;
+        Pattern pattern = Pattern.compile("^\\d+[ ]\\d+$");
+        Matcher matcher;
+        // размеры доски
+        String line = reader.readLine();
+        matcher = pattern.matcher(line);
+        if (!matcher.matches()) {
+            return;
+        }
+
+        String[] nm = line.split(" ");
+        int N = Integer.parseInt(nm[0].trim());
+        int M = Integer.parseInt(nm[1].trim());
+
+        int[][] desk = new int[N][M];
+
+
+        int w = Integer.parseInt(reader.readLine().trim());
+        List<Checker> white = new ArrayList<>();
+        for (int i = 0; i < w; i++) {
+            line = reader.readLine();
+            matcher = pattern.matcher(line);
+            if (!matcher.matches())
+                return;
+            String[] parts = line.split(" ");
+            int x = Integer.parseInt(parts[0].trim());
+            int y = Integer.parseInt(parts[1].trim());
+            desk[y-1][x-1] = 1;
+            white.add(new Checker(x,y));
+        }
+
+        int b = Integer.parseInt(reader.readLine().trim());
+        List<Checker> black = new ArrayList<>();
+        for (int i = 0; i < b; i++) {
+            line = reader.readLine();
+            matcher = pattern.matcher(line);
+            if (!matcher.matches())
+                return;
+            String[] parts = line.split(" ");
+            int x = Integer.parseInt(parts[0].trim());
+            int y = Integer.parseInt(parts[1].trim());
+            desk[y-1][x-1] = 2;
+            black.add(new Checker(x,y));
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.print(desk[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("white: ");
+        for(Checker checker : white) {
+            System.out.println(checker.getX() + " : " + checker.getY());
+        }
+
+        System.out.println();
+        System.out.println("black: ");
+        for(Checker checker : black) {
+            System.out.println(checker.getX() + " : " + checker.getY());
+        }
+
+        String move = reader.readLine();
+        reader.close();
+
+        if (move.equals("white"))
+            takeIsPossible = canTake(desk,white);
+        else if (move.equals("black"))
+            takeIsPossible = canTake(desk,black);
+        else return;
+
+        if (takeIsPossible)
+            writer.write("Yes");
+//            System.out.println("Yes");
+        else
+            writer.write("No");
+//            System.out.println("No");
+
+        writer.close();
+    }
+
+    public static boolean canTake(int[][] desk, List<Checker> checkers) {
+        for (Checker checker : checkers) {
+            int x = checker.getX() - 1;
+            int y = checker.getY() - 1;
+            System.out.println("Сейчас проверяем: " + x + " : " + y);
+            if (x - 2 >= 0 && y - 2 >= 0 && desk[y - 2][x - 2] == 0) {
+                System.out.println("true 1");
+                if (desk[y][x] != desk[y - 1][x - 1] && desk[y - 1][x - 1] > 0)
+                    return true;
+            }
+            if (x - 2 >= 0 && y + 2 <= desk.length - 1 && desk[y + 2][x - 2] == 0) {
+                System.out.println("true 2");
+                if (desk[y][x] != desk[y + 1][x - 1] && desk[y + 1][x - 1] > 0)
+                    return true;
+            }
+            if (x + 2 <= desk[0].length - 1 && y - 2 >= 0 && desk[y - 2][x + 2] == 0) {
+                System.out.println("true 3");
+                if (desk[y][x] != desk[y - 1][x + 1] && desk[y - 1][x + 1] > 0)
+                    return true;
+            }
+            if (x + 2 <= desk[0].length - 1 && y + 2 <= desk.length - 1 && desk[y + 2][x + 2] == 0) {
+                System.out.println("true 4");
+                if (desk[y][x] != desk[y + 1][x + 1] && desk[y + 1][x + 1] > 0)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+}
+
+class Checker {
+    private int x;
+    private int y;
+    public Checker(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+}
